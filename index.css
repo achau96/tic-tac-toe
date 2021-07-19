@@ -1,0 +1,28 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: bisque;
+}
+
+.container {
+  margin-top: 10vh;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 27vh;
+  width:27vh;
+}
+
+.xo {
+  font-size: 2vh;
+  height:9vh;
+  width:9vh;
+  background-color: bisque;
+  border:1px solid black;
+}
+
+.xo:hover {
+  cursor: pointer;
+}

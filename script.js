@@ -76,7 +76,6 @@ const game = ((Player)=>{
       if(winArray[0]!='' && winArray[0]==winArray[1] && winArray[1] == winArray[2]){
         winner.textContent = `${winArray[0]} wins!`
         buttons.forEach(button => button.removeEventListener('click', playerMove));
-        console.log(winConditions[i]);
         displayController.winDisplay(winConditions[i]);
         winStatus = 1;
       }

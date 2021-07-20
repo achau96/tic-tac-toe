@@ -6,8 +6,20 @@ body {
   background-color: bisque;
 }
 
+.restart {
+padding: 10px;
+background-color: cornflowerblue;
+font-size: 3vh;
+border-radius: 10%;
+}
+
+.restart:hover {
+  cursor: pointer;
+  padding:11px;
+}
+
 .container {
-  margin-top: 10vh;
+  margin-top: 6vh;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -16,7 +28,7 @@ body {
 }
 
 .xo {
-  font-size: 2vh;
+  font-size: 3vh;
   height:9vh;
   width:9vh;
   background-color: bisque;
@@ -25,4 +37,17 @@ body {
 
 .xo:hover {
   cursor: pointer;
+}
+
+.winner {
+  margin: 20px;
+  padding: 10px;
+  font-size:7vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: brown;
+}
+
+.win {
+  background-color:lightgreen;
 }

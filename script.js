@@ -10,8 +10,12 @@ const updateDisplay = () => buttons.forEach((button,i) => {
   button.textContent=board[i];
 });
 const winDisplay = (arr) => {
+buttons.forEach(button => {
+  if(arr.includes(Number(button.id)))
+  button.classList.add("win");
+})
 }
-return {updateDisplay}
+return {updateDisplay,winDisplay}
 })(gameBoard.board);
 
 const Player = (name,marker,turn) => {
@@ -73,6 +77,7 @@ const game = ((Player)=>{
         winner.textContent = `${winArray[0]} wins!`
         buttons.forEach(button => button.removeEventListener('click', playerMove));
         console.log(winConditions[i]);
+        displayController.winDisplay(winConditions[i]);
         winStatus = 1;
       }
     }

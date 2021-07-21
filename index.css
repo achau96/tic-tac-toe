@@ -8,6 +8,7 @@ body {
 
 .restart {
 padding: 10px;
+margin-bottom: 10px;
 background-color: cornflowerblue;
 font-size: 3vh;
 border-radius: 10%;
@@ -39,6 +40,10 @@ border-radius: 10%;
   cursor: pointer;
 }
 
+.turn {
+  background-color: yellow;
+}
+
 .winner {
   margin: 20px;
   padding: 10px;
@@ -50,4 +55,14 @@ border-radius: 10%;
 
 .win {
   background-color:lightgreen;
+}
+
+.submit{
+display:inline;
+transition: all .2s ease-in-out;
+}
+
+.submit:hover{
+  cursor: pointer;
+  transform: scale(1.1);
 }

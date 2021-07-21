@@ -39,12 +39,16 @@ const Player = (name,marker,turn) => {
         markO(index);
       }
   }
-  return {name, state};
+  return {name,state,turn,mark};
 }
 
 const game = ((Player)=>{
+
+  const playerNameOne = document.getElementById('playerone');
+  const playerNameTwo = document.getElementById('playertwo');
   const playerOne = Player('playerone', 'X',true);
   const playerTwo = Player('playertwo', 'O',false);
+
   let turn='X';
   const buttons = document.querySelectorAll('.xo');
   const winner = document.querySelector('.winner');
@@ -60,13 +64,24 @@ const game = ((Player)=>{
   ];
 
   const playerMove = (e) => {
-    Player().state(e.target.id,turn);
-    checkWin();
-    if(turn == 'X'){turn = 'O'}
-    else {turn = 'X'}
+    if(playerOne.turn == true){
+      playerOne.mark(e.target.id);
+      playerOne.turn = !playerOne.turn;
+      playerTwo.turn = !playerTwo.turn;
+      playerNameOne.classList.remove('turn');
+      playerNameTwo.classList.add('turn');
+      checkWin(playerOne.name);
+    } else {
+      playerTwo.mark(e.target.id);
+      playerOne.turn = !playerOne.turn;
+      playerTwo.turn = !playerTwo.turn;
+      playerNameOne.classList.add('turn');
+      playerNameTwo.classList.remove('turn');
+      checkWin(playerTwo.name);
+    }
   }
 
-  const checkWin = () => {
+  const checkWin = (name) => {
     let winStatus = 0;
     let winArray = [];
     for(let i = 0; i<winConditions.length;i++){
@@ -74,7 +89,7 @@ const game = ((Player)=>{
         winArray[j] = gameBoard.board[index];
       })
       if(winArray[0]!='' && winArray[0]==winArray[1] && winArray[1] == winArray[2]){
-        winner.textContent = `${winArray[0]} wins!`
+        winner.textContent = `${name} wins!`
         buttons.forEach(button => button.removeEventListener('click', playerMove));
         displayController.winDisplay(winConditions[i]);
         winStatus = 1;
@@ -86,22 +101,29 @@ const game = ((Player)=>{
   }
 
   const reset = () => gameBoard.board = ['','','','','','','','',''];
-  const start = () => buttons.forEach(button => button.addEventListener('click',
+  const start = () => {
+    if(playerNameOne.value!='' ){playerOne.name = playerNameOne.value}
+    if(playerNameTwo.value!='' ){playerTwo.name = playerNameTwo.value}
+  buttons.forEach(button => button.addEventListener('click',
   playerMove,
   {
   once:true //removes event listener once triggered
   }));
-
+  }
   return {start,reset}
 })(Player);
 
-game.start();
+const nameForm = document.querySelector('.names');
+nameForm.addEventListener('submit', (e)=>{
+  game.start();
+  e.preventDefault();
+})
+
 
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', () => {
   game.reset();
   location.reload();
-  game.start();
   displayController.updateDisplay();
 })
 
